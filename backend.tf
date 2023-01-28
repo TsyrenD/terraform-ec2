@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "jenkins-terraform-evolvecybertraining"
+    bucket = "terraform-github-action-tsyren"
     key    = "state/terraform.tfstate"
     region = "us-east-1"
   }
