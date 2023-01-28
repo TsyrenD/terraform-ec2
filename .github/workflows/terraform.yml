@@ -31,6 +31,24 @@ jobs:
       with:
         terraform_version: 1.1.9
 
+    - uses: DamianReeves/write-file-action@master
+      with:
+        path: backend.tf
+        contents: |
+          terraform {
+            backend "s3" {
+              bucket = "${{ secrets.BUCKET_NAME }}"
+              key    = "state/terraform.tfstate"
+              region = "us-east-1"
+            }
+          }
+        write-mode: overwrite
+
+    - name: Verify Backend.tf
+      run: |
+        ls -R
+        cat backend.tf
+
     - name: Terraform Init
       run: terraform init
 
